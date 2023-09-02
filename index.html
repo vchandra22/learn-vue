@@ -18,6 +18,9 @@
         <!-- Event Click -->
         <button v-on:click="age++">Menamahkan Usia</button>
         <button v-on:click="age--">Mengurangi Usia</button>
+        
+        <div @click="gantiJudul()">Mengganti Judul Buku</div>
+        <div @click="gantiTitle('How to Write Clean Code')">Mengganti Judul Buku (single post)</div>
     </div>
 </body>
 
