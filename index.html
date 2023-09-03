@@ -15,12 +15,33 @@
         <!-- Memanggil value data dari vue (dinamis) -->
         <p>{{ title }} - {{ author }} ({{ age }})</p>
 
+        <hr>
+
         <!-- Event Click -->
         <button v-on:click="age++">Menamahkan Usia</button>
         <button v-on:click="age--">Mengurangi Usia</button>
         
         <div @click="gantiJudul()">Mengganti Judul Buku</div>
         <div @click="gantiTitle('How to Write Clean Code')">Mengganti Judul Buku (single post)</div>
+
+        <hr>
+
+        <!-- Conditonal Rendering -->
+        <div v-if="showBooks">
+            <p>{{ title }} - {{ author }} ({{ age }})</p>
+        </div>
+
+        <button @click="toogleShowBooks">
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else="!showBooks">Show Books</span>
+        </button>
+
+        <!-- Without DOM / directive add css display none -->
+        <div v-show="showBooks">
+            <p>Saat ini menampilkan buku secara directive</p>
+        </div>
+
+
     </div>
 </body>
 

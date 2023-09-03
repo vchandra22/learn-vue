@@ -5,18 +5,26 @@ const app = Vue.createApp({
     //menampilkan data dinamis dari vue
     data() {
         return {
+            showBooks: true,
             title: 'How to Became Good Programmer',
             author: 'Rendy Yulianto',
             age: 43
         }
     },
     //membuat method untuk mengganti data->title
+    // methods: {
+    //     gantiJudul() {
+    //         this.title = 'How to Write Clean Code'
+    //     },
+    //     gantiTitle(title) {
+    //         this.title = title
+    //     }
+    // }
+
+    //Conditional rendering methods
     methods: {
-        gantiJudul() {
-            this.title = 'How to Write Clean Code'
-        },
-        gantiTitle(title) {
-            this.title = title
+        toogleShowBooks() {
+            this.showBooks = !this.showBooks
         }
     }
 })
