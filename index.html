@@ -5,6 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            background: #EFEFEF;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        p,
+        h3,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            background: #EFEFEF;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li.fav {
+            border: 2px solid orange;
+        }
+    </style>
+
     <title>Document</title>
 </head>
 
@@ -20,9 +59,11 @@
         <!-- Event Click -->
         <button v-on:click="age++">Menamahkan Usia</button>
         <button v-on:click="age--">Mengurangi Usia</button>
-        
+
         <div @click="gantiJudul()">Mengganti Judul Buku</div>
-        <div @click="gantiTitle('How to Write Clean Code')">Mengganti Judul Buku (single post)</div>
+
+        <!-- Single Post -->
+        <div @click="gantiTitle('Atomic Habbits')">Mengganti Judul Buku (single post)</div>
 
         <hr>
 
@@ -38,9 +79,51 @@
 
         <!-- Without DOM / directive add css display none -->
         <div v-show="showBooks">
-            <p>Saat ini menampilkan buku secara directive</p>
+            <p>Saat ini menampilkan buku secara directive (v-show)</p>
         </div>
 
+        <hr>
+
+        <!-- Mouse Events -->
+        <div class="box" @mouseover="eventHandler($event, 5)">mouseover (enter)</div>
+        <div class="box" @mouseleave="eventHandler">mouseleave</div>
+        <div class="box" @dblclick="eventHandler">double click</div>
+        <div class="box" @mousemove="handleMouseMove">positions {{ x }} {{ y }}</div>
+
+        <hr>
+
+        <!-- Outputing Lists (v-for) -->
+        <div v-if="showBooks">
+            <ul>
+                <li v-for="book in books">
+                    <h4>{{ book.judul }}</h4>
+                    <p>{{ book.author }}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <!-- Attribute Binding -->
+        <a :href="google">Link ke Google</a>
+        <ul>
+            <li v-for="book in books">
+                <img :src="book.img" :alt="book.judul">
+                <h4>{{ book.judul }}</h4>
+                <p>{{ book.author }}</p>
+            </li>
+        </ul>
+
+        <hr>
+
+        <!-- Dynamic Classes -->
+        <ul>
+            <li v-for="book in books" :class="{ fav: book.isFav }">
+                <img :src="book.img" :alt="book.judul">
+                <h4>{{ book.judul }}</h4>
+                <p>{{ book.author }}</p>
+            </li>
+        </ul>
 
     </div>
 </body>
